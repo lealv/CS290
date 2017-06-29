@@ -1,0 +1,143 @@
+﻿<!--
+    Name: Alvin Le
+    CS290
+    Date: 6/28/17
+-->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>HW Assignment: HTML/CSS</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+ </head>
+ <body>
+	<table>
+		<caption>What is the result of mixing two colors?</caption>
+		<thead>
+			<tr>
+				<th>
+				<th>Blue
+				<th>Yellow
+				<th>Red
+				<th>White
+				<th>Black
+		<tbody>
+			<tr>
+				<td><em>Blue</em>
+				<td>N/A
+				<td>Green
+				<td>Purple
+				<td>Light Blue
+				<td>Dark Blue
+			<tr>
+				<td><em>Yellow</em>
+				<td>Green
+				<td>N/A
+				<td>Orange
+				<td>Light Yellow
+				<td>Dark Yellow
+			<tr>
+				<td><em>Red</em>
+				<td>Purple
+				<td>Orange
+				<td>N/A
+				<td>Pink
+				<td>Dark Red
+			<tr>
+				<td><em>White</em>
+				<td>Light Blue
+				<td>Light Yellow
+				<td>Pink
+				<td>N/A
+				<td>Gray
+			<tr>
+				<td><em>Black</em>
+				<td>Dark Blue
+				<td>Dark Yellow
+				<td>Dark Red
+				<td>Gray
+				<td>N/A
+			<tfoot>
+                <tr>
+                    <td colspan="2">Footer 1 </td>
+                    <td colspan="4">Footer 2 </td>
+	</table>
+	<dl>
+		<dt>Favorite color?
+		<dd>Yellow
+		<dt>Favorite city?
+		<dd>Houston
+		<dt>Favorite food?
+		<dd>Pizza
+	</dl>
+	<div class="outer-content">
+		<div class="inner-content">
+            <span>Text</span>
+        </div>
+	</div>
+    <form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="get">
+        <fieldset>
+            <legend>Some Get Data</legend>
+            <label>Text here:
+                <input type="text" name="text_input" size="30">
+            </label>
+            <br />
+            <label>Number here:
+                <input type="number" name="numerical_input" size="30">
+            </label>
+            <br />
+            <label>Password here:
+                <input type="password" name="password_input" size="30">
+            </label>
+            <br />
+            <p>Select between:</p>
+            <label>
+                <input type="radio" name="candy" value="Snickers">Snickers</label>
+            <br />
+            <label>
+                <input type="radio" name="candy" value="Skittles">Skittles</label>
+            <br />
+            <label>
+                <input type="radio" name="candy" value="Mentos">Mentos</label>
+            <br />
+            <input type="submit" value="Submit" />
+        </fieldset>
+    </form>
+
+     <form action="http://classes.engr.oregonstate.edu/eecs/winter2015/cs290-400/tools/class-content/form_tests/check_request.php" method="post">
+         <fieldset>
+             <legend>Some Post Data</legend>
+             <label>
+                 Text here:
+                 <input type="text" name="text_input" size="30">
+             </label>
+             <br />
+             <label>
+                 Number here:
+                 <input type="number" name="numerical_input" size="30">
+             </label>
+             <br />
+             <label>
+                 Password here:
+                 <input type="password" name="password_input" size="30">
+             </label>
+             <br />
+             <p>Select between:</p>
+             <label>
+                 <input type="radio" name="candy" value="Snickers">Snickers
+             </label>
+             <br />
+             <label>
+                 <input type="radio" name="candy" value="Skittles">Skittles
+             </label>
+             <br />
+             <label>
+                 <input type="radio" name="candy" value="Mentos">Mentos
+             </label>
+             <br />
+             <input type="submit" value="Submit" />
+         </fieldset>
+     </form>
+ </body>
+</html>

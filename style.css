@@ -1,0 +1,52 @@
+/*
+    Name: Alvin Le
+    CS290
+    Date: 6/28/17
+*/
+
+table{
+	border-style:solid;
+}
+
+th, td, tfoot{
+	border:1px solid black;
+}
+
+/*Color the text in every other column red.*/
+tbody tr td:nth-of-type(even){
+    color:red;
+}
+
+/*Color the background of every other data row green(starting with row 1).*/
+tbody tr:nth-of-type(odd){
+    background-color:lightgreen;
+}
+
+/*Color the background of every other data row blue(starting with row 2).*/
+tbody tr:nth-of-type(even) {
+    background-color: skyblue;
+}
+
+
+.outer-content {
+    position:relative;
+    top: 20px;
+    background-color: pink;
+    width: 75%;
+    height: 40px;
+}
+
+.inner-content{
+    position:absolute;
+    background-color:skyblue;
+    width:75%;
+    height:50%;
+    left:12.5%;
+    top:25%;
+    text-align:center;
+}
+
+form{
+    position:relative;
+    top:20px;
+}
