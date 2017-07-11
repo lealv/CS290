@@ -1,7 +1,7 @@
 /*
 * Name: Alvin Le
 * CS290
-* Date: 7/10/17
+* Date: 7/11/17
 */
 
 function Automobile(year, make, model, type) {
@@ -9,6 +9,15 @@ function Automobile(year, make, model, type) {
     this.make = make; //string (ex. Honda, Ford)
     this.model = model; //string (ex. Accord, Focus)
     this.type = type; //string (ex. Pickup, SUV)
+}
+
+Automobile.prototype.logMe = function (printType) {
+    if (printType === true) {
+        console.log(this.year + ' ' + this.make + ' ' + this.model + ' ' + this.type);
+    }
+    else {
+        console.log(this.year + ' ' + this.make + ' ' + this.model);
+    }
 }
 
 var automobiles = [
@@ -19,16 +28,6 @@ var automobiles = [
     new Automobile(2005, "Lotus", "Elise", "Roadster"),
     new Automobile(2008, "Subaru", "Outback", "Wagon")
 ];
-var auto1 = automobiles[0];
-var auto2 = automobiles[1];
-/*
-This function sorts arrays using an arbitrary comparator. 
-You pass it a comparator and an array of objects appropriate for that comparator 
-and it will return a new array which is sorted with the largest object in index 0 and the smallest in the last index
-*/
-function sortArr(comparator, array) {
-    /*your code here*/
-}
 
 /*
 A comparator takes two arguments and uses some algorithm to compare them. 
@@ -44,7 +43,11 @@ function exComparator(int1, int2) {
 }
 
 /*
-start: start of array (usually 0)
+This function sorts arrays using an arbitrary comparator. 
+You pass it a comparator and an array of objects appropriate for that comparator 
+and it will return a new array which is sorted with the largest object in index 0 and the smallest in the last index
+
+start: start of array (0)
 end: size of array-1
 */
 function quickSort(array, start, end, comparator) {
@@ -61,15 +64,18 @@ function quickSort(array, start, end, comparator) {
     }
 }
 
+/*
+Partitioning function for use in quickSort().
+Partition in such a way that the final array is sorted from greatest to least.
+*/
 function partition(array, start, end, comparator) {
     //Pivot is the first element in the range.
     var pivotVal = array[start];
     var pivot = start;
 
-    //Move remaining elements. Elements smaller than the pivot 
-    for(var i = start + 1; i <=end; i++)
-    {
-        if(comparator(array[i], pivotVal) == false) //array[i] <= pivot
+    //Move remaining elements. Elements greater than the pivot are moved to its left.
+    for (var i = start + 1; i <= end; i++) {
+        if (comparator(array[i], pivotVal) === true) //true when array[i] > pivot
         {
             //Swap current element with the element to the right of pivot.
             var temp = array[i];
@@ -88,9 +94,11 @@ function partition(array, start, end, comparator) {
 
 /*For all comparators if cars are 'tied' according to the comparison rules then the order of those 'tied' cars is not specified and either can come first*/
 
-/*This compares two automobiles based on their year. Newer cars are "greater" than older cars.*/
+/*
+This compares two automobiles based on their year. Newer cars are "greater" than older cars.
+Returns true when auto1 > auto2.
+*/
 function yearComparator(auto1, auto2) {
-    /* your code here*/
     if(auto1.year > auto2.year){
         return true;
     }
@@ -99,29 +107,105 @@ function yearComparator(auto1, auto2) {
     }
 }
 
-/*This compares two automobiles based on their make. It should be case insensitive and makes which are alphabetically earlier in the alphabet are "greater" than ones that come later.*/
+/*
+This compares two automobiles based on their make. It should be case insensitive and makes which are alphabetically earlier in the alphabet are "greater" than ones that come later.
+Returns true when auto1 > auto2.
+*/
 function makeComparator(auto1, auto2) {
-    /* your code here*/
+    var make1 = auto1.make.toLowerCase();
+    var make2 = auto2.make.toLowerCase();
+
+    if (make1 < make2) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
-/*This compares two automobiles based on their type. The ordering from "greatest" to "least" is as follows: roadster, pickup, suv, wagon, (types not otherwise listed). It should be case insensitive. If two cars are of equal type then the newest one by model year should be considered "greater".*/
+/*
+This compares two automobiles based on their type. The ordering from "greatest" to "least" is as follows: roadster, pickup, suv, wagon, (types not otherwise listed). 
+It should be case insensitive. If two cars are of equal type then the newest one by model year should be considered "greater".
+Returns true when auto1 > auto2.
+*/
 function typeComparator(auto1, auto2) {
-    /* your code here*/
+    //val1 and val2 hold the automobile type priority for auto1 and auto2, respectively.
+    var val1;
+    var val2;
+
+    //Assign priority to automobile 1. "1" is highest priority.
+    if(auto1.type.toLowerCase() === "roadster")
+    {
+        val1 = 1;
+    }
+    else if(auto1.type.toLowerCase() === "pickup")
+    {
+        val1 = 2;
+    }
+    else if (auto1.type.toLowerCase() === "suv") {
+        val1 = 3;
+    }
+    else if (auto1.type.toLowerCase() === "wagon") {
+        val1 = 4;
+    }
+    else{
+        val1 = 5;
+    }
+
+    //Assign priority to automobile 2. "1" is highest priority.
+    if (auto2.type.toLowerCase() === "roadster") {
+        val2 = 1;
+    }
+    else if (auto2.type.toLowerCase() === "pickup") {
+        val2 = 2;
+    }
+    else if (auto2.type.toLowerCase() === "suv") {
+        val2 = 3;
+    }
+    else if (auto2.type.toLowerCase() === "wagon") {
+        val2 = 4;
+    }
+    else {
+        val2 = 5;
+    }
+
+    if(val1 < val2) {
+        return true;
+    }
+    else if (val1 == val2) {
+        //If both cars are same type, the newer model is "greatest".
+        //Returns true if auto1 is newer than auto2.
+        return yearComparator(auto1, auto2);
+    }
+    else {
+        return false;
+    }
 }
 
-for (var p in automobiles)
-{
-    console.log(automobiles[p].year + ' ' + automobiles[p].model);
-}
+console.log("*****");
 
+//Sort & print by year.
+console.log("The cars sorted by year are:");
 quickSort(automobiles, 0, automobiles.length - 1, yearComparator);
-
 for (var p in automobiles) {
-    console.log("end"+automobiles[p].year + ' ' + automobiles[p].model);
+    automobiles[p].logMe(false);
 }
 
+//Sort & print by make.
+console.log("\nThe cars sorted by make are:");
+quickSort(automobiles, 0, automobiles.length - 1, makeComparator);
+for (var p in automobiles) {
+    automobiles[p].logMe(false);
+}
 
+//Sort & print by type.
+console.log("\nThe cars sorted by type are:");
+quickSort(automobiles, 0, automobiles.length - 1, typeComparator);
+for (var p in automobiles) {
+    automobiles[p].logMe(true);
+}
 
+console.log("*****");
 
 
 
